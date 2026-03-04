@@ -15,7 +15,7 @@
 
 ### 选项 1: 下载预编译版本（推荐）
 
-从 [Releases](https://github.com/your-repo/memcode/releases) 下载预编译版本：
+从 [Releases](https://github.com/TbusOS/memcode/releases) 下载预编译版本：
 
 ```bash
 # Windows
@@ -42,7 +42,7 @@ npx memcode --path /your/code/path
 
 #### TypeScript 版本
 ```bash
-git clone https://github.com/your-repo/memcode.git
+git clone https://github.com/TbusOS/memcode.git
 cd memcode/memcode-npm
 npm install
 npm run build
@@ -51,7 +51,7 @@ node dist/index.js --path /your/code/path
 
 #### Go 版本（单一二进制文件，无依赖）
 ```bash
-git clone https://github.com/your-repo/memcode.git
+git clone https://github.com/TbusOS/memcode.git
 cd memcode/memcode-go
 go build -o memcode
 ./memcode --path /your/code/path

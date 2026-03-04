@@ -27,7 +27,7 @@ memcode --path /your/code/path
 ### 选项 3: 从源码构建
 
 ```bash
-git clone https://github.com/your-repo/memcode.git
+git clone https://github.com/TbusOS/memcode.git
 cd memcode/memcode-npm
 npm install
 npm run build

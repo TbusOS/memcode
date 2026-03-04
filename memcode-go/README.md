@@ -14,26 +14,64 @@ High-performance MCP Server that loads code into memory for faster access by Cla
 
 ### Option 1: Download Pre-built Executable (Recommended)
 
-Download the pre-built executable from [Releases](https://github.com/your-repo/memcode/releases):
+Go to GitHub Releases page to download the pre-built version for your platform:
+https://github.com/TbusOS/memcode/releases
+
+**Manual download:**
+1. Open the Releases page above
+2. Download the archive for your platform:
+   - `memcode-windows-amd64.zip` - Windows x64
+   - `memcode-linux-amd64.tar.gz` - Linux x64
+   - `memcode-darwin-amd64.tar.gz` - macOS Intel (x64)
+   - `memcode-darwin-arm64.tar.gz` - macOS Apple Silicon (M1/M2/M3)
+3. Extract and move the executable to a suitable location
+
+**Using command line (macOS/Linux):**
+
+```bash
+# Create install directory
+mkdir -p ~/memcode
+cd ~/memcode
+
+# Download macOS Apple Silicon
+curl -L -o memcode.tar.gz https://github.com/TbusOS/memcode/releases/latest/download/memcode-darwin-arm64.tar.gz
+
+# Or download macOS Intel
+curl -L -o memcode.tar.gz https://github.com/TbusOS/memcode/releases/latest/download/memcode-darwin-amd64.tar.gz
+
+# Or download Linux
+curl -L -o memcode.tar.gz https://github.com/TbusOS/memcode/releases/latest/download/memcode-linux-amd64.tar.gz
+
+# Extract
+tar -xzf memcode.tar.gz
+
+# Move to system path
+chmod +x memcode
+sudo mv memcode /usr/local/bin/
+```
+
+**Windows users:**
+1. Download the `.zip` file from Releases page
+2. Extract to get `memcode.exe`
+3. Move it to a suitable location (e.g., `C:\tools\`)
+
+**Usage:**
 
 ```bash
 # Windows
-memcode.exe --path C:\your\code\path
+C:\tools\memcode.exe --path C:\your\code\path
 
 # Linux
-./memcode-linux --path /your/code/path
+/usr/local/bin/memcode --path /your/code/path
 
-# macOS (Intel)
-./memcode-darwin-x64 --path /your/code/path
-
-# macOS (Apple Silicon)
-./memcode-darwin-arm64 --path /your/code/path
+# macOS
+./memcode --path /your/code/path
 ```
 
 ### Option 2: Build from Source
 
 ```bash
-git clone https://github.com/your-repo/memcode.git
+git clone https://github.com/TbusOS/memcode.git
 cd memcode/memcode-go
 go build -o memcode
 ./memcode --path /your/code/path

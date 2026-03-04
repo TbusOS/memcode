@@ -14,26 +14,64 @@
 
 ### 选项 1: 下载预编译版本（推荐）
 
-从 [Releases](https://github.com/your-repo/memcode/releases) 下载预编译版本：
+前往 GitHub Releases 页面下载对应平台的预编译版本：
+https://github.com/TbusOS/memcode/releases
+
+**手动下载：**
+1. 打开上面的 Releases 页面
+2. 下载对应平台的压缩包：
+   - `memcode-windows-amd64.zip` - Windows x64
+   - `memcode-linux-amd64.tar.gz` - Linux x64
+   - `memcode-darwin-amd64.tar.gz` - macOS Intel (x64)
+   - `memcode-darwin-arm64.tar.gz` - macOS Apple Silicon (M1/M2/M3)
+3. 解压后将可执行文件移动到合适的位置
+
+**使用命令行下载（macOS/Linux）：**
+
+```bash
+# 创建安装目录
+mkdir -p ~/memcode
+cd ~/memcode
+
+# 下载 macOS Apple Silicon 版本
+curl -L -o memcode.tar.gz https://github.com/TbusOS/memcode/releases/latest/download/memcode-darwin-arm64.tar.gz
+
+# 或下载 macOS Intel 版本
+curl -L -o memcode.tar.gz https://github.com/TbusOS/memcode/releases/latest/download/memcode-darwin-amd64.tar.gz
+
+# 或下载 Linux 版本
+curl -L -o memcode.tar.gz https://github.com/TbusOS/memcode/releases/latest/download/memcode-linux-amd64.tar.gz
+
+# 解压
+tar -xzf memcode.tar.gz
+
+# 移动到系统路径
+chmod +x memcode
+sudo mv memcode /usr/local/bin/
+```
+
+**Windows 用户：**
+1. 从 Releases 页面下载 `.zip` 文件
+2. 解压得到 `memcode.exe`
+3. 将其移动到合适的位置（如 `C:\tools\`）
+
+**使用：**
 
 ```bash
 # Windows
-memcode.exe --path C:\your\code\path
+C:\tools\memcode.exe --path C:\your\code\path
 
 # Linux
-./memcode-linux --path /your/code/path
+/usr/local/bin/memcode --path /your/code/path
 
-# macOS (Intel)
-./memcode-darwin-x64 --path /your/code/path
-
-# macOS (Apple Silicon)
-./memcode-darwin-arm64 --path /your/code/path
+# macOS
+./memcode --path /your/code/path
 ```
 
 ### 选项 2: 从源码构建
 
 ```bash
-git clone https://github.com/your-repo/memcode.git
+git clone https://github.com/TbusOS/memcode.git
 cd memcode/memcode-go
 go build -o memcode
 ./memcode --path /your/code/path

@@ -15,7 +15,7 @@ Choose one of the following methods:
 
 ### Option 1: Download Pre-built Executable (Recommended)
 
-Download the pre-built executable from [Releases](https://github.com/your-repo/memcode/releases):
+Download the pre-built executable from [Releases](https://github.com/TbusOS/memcode/releases):
 
 ```bash
 # Windows
@@ -42,7 +42,7 @@ npx memcode --path /your/code/path
 
 #### TypeScript version
 ```bash
-git clone https://github.com/your-repo/memcode.git
+git clone https://github.com/TbusOS/memcode.git
 cd memcode/memcode-npm
 npm install
 npm run build
@@ -51,7 +51,7 @@ node dist/index.js --path /your/code/path
 
 #### Go version (single binary, no dependencies)
 ```bash
-git clone https://github.com/your-repo/memcode.git
+git clone https://github.com/TbusOS/memcode.git
 cd memcode/memcode-go
 go build -o memcode
 ./memcode --path /your/code/path
