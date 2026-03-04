@@ -1,0 +1,50 @@
+{
+  "name": "memcode",
+  "version": "1.0.0",
+  "description": "MCP Server that loads code into memory for faster access",
+  "main": "dist/index.js",
+  "bin": {
+    "memcode": "./src/index.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && npm run build",
+    "build": "tsc",
+    "build:exe": "npx pkg dist/index.js --targets node18-win-x64,node18-linux-x64,node18-macos-x64 --output memcode",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "dev": "node --import tsx src/index.ts",
+    "start": "node --import tsx src/index.ts",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "memory",
+    "code",
+    "cache"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "chokidar": "^3.6.0",
+    "commander": "^12.1.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.14.0",
+    "jest": "^29.7.0",
+    "pkg": "^5.8.1",
+    "ts-jest": "^29.1.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.4.5"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/@modelcontextprotocol/sdk/**/*",
+      "node_modules/zod/**/*"
+    ]
+  }
+}

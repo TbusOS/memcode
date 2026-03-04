@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+memcode-macos
+memcode.exe
+memcode-linux
+memcode-darwin-x64
+memcode-darwin-arm64
+
+# Coverage
+coverage/
+
+# IDE
+.DS_Store
+.idea/
+
+# Logs
+*.log
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary
+memcode
+
+# Claude Code
+.claude/
