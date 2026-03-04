@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Build for Windows
+        env:
+          GOOS: windows
+          GOARCH: amd64
+        run: |
+          cd memcode-go
+          go build -o memcode.exe
+          zip ../memcode-windows-amd64.zip memcode.exe
+
+      - name: Build for Linux
+        env:
+          GOOS: linux
+          GOARCH: amd64
+        run: |
+          cd memcode-go
+          go build -o memcode
+          tar -czf ../memcode-linux-amd64.tar.gz memcode
+
+      - name: Build for macOS (Intel)
+        env:
+          GOOS: darwin
+          GOARCH: amd64
+        run: |
+          cd memcode-go
+          go build -o memcode
+          tar -czf ../memcode-darwin-amd64.tar.gz memcode
+
+      - name: Build for macOS (Apple Silicon)
+        env:
+          GOOS: darwin
+          GOARCH: arm64
+        run: |
+          cd memcode-go
+          go build -o memcode
+          tar -czf ../memcode-darwin-arm64.tar.gz memcode
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            memcode-windows-amd64.zip
+            memcode-linux-amd64.tar.gz
+            memcode-darwin-amd64.tar.gz
+            memcode-darwin-arm64.tar.gz
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
