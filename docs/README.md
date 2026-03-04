@@ -25,7 +25,7 @@ memcode.exe --path C:\your\code\path
 ./memcode-linux --path /your/code/path
 
 # macOS (Intel)
-./memcode-darwin-x64 --path /your/code/path
+./memcode-darwin-amd64 --path /your/code/path
 
 # macOS (Apple Silicon)
 ./memcode-darwin-arm64 --path /your/code/path
