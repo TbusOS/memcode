@@ -202,6 +202,47 @@ Get cache statistics.
 
 **Typical improvement**: 10-100x faster for repeated operations
 
+## Memory Usage
+
+In-memory storage typically uses **1.5-3x more memory** than the original file size.
+
+### Overhead Sources
+
+| Source | Description |
+|--------|-------------|
+| **String copies** | Go's string is immutable, data is copied on read |
+| **Map keys** | File paths stored as keys |
+| **Map load factor** | Go map ~15% empty space |
+| **String headers** | 16-32 bytes overhead per string |
+
+### Example
+
+For a 10MB codebase:
+
+| Item | Size |
+|------|------|
+| Source files | 10 MB |
+| Memory usage (estimated) | 15-25 MB |
+| Additional overhead | 5-15 MB |
+
+### Trade-off
+
+```
+Reading a file 1000 times:
+  Disk I/O: 1000 × ~5ms = 5 seconds
+  Memory:   1000 × ~0.01ms = 0.01 seconds
+```
+
+The extra memory cost is worth it for 100-500x faster read speeds in code editing scenarios.
+
+### Optimization Tips
+
+If memory is a bottleneck:
+
+1. **Reduce included file types** - Use `--include` to load only core code
+2. **Exclude large directories** - Use `--exclude` to skip test, vendor, etc.
+3. **Future** - LRU eviction strategy to keep only recently accessed files
+
 ## Configuration
 
 ### Command Line Options
@@ -230,10 +271,9 @@ Get cache statistics.
 
 ## Limitations
 
-1. **Memory Usage**: All files are loaded into RAM; large codebases may consume significant memory
-2. **Initial Load**: First load takes time proportional to codebase size
-3. **Sync Delay**: File watcher may have slight delay before updates reflect in cache
-4. **Binary Files**: Not recommended for large binary files
+1. **Initial Load**: First load takes time proportional to codebase size
+2. **Sync Delay**: File watcher may have slight delay before updates reflect in cache
+3. **Binary Files**: Not recommended for large binary files
 
 ## Future Enhancements
 
